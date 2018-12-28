@@ -1,0 +1,38 @@
+{
+  "appConfig": {
+    "port": 8080
+  },
+  "dbConfig": {
+    "uri": "mongodb+srv://{user}:{pass}@cluster0-xwacc.mongodb.net/{dbName}?retryWrites=true",
+    "dbName": "test",
+    "options": {
+      "useNewUrlParser": true
+    }
+  },
+  "googleServiceConfig": {
+    "drive": {
+      "fileId": "1Z4CUHvFmL5RbB72WAPu2N0jE4FvdoYulUt93dL7Zik4",
+      "folderId": "1TYX-u91sHaYfUOpdimZ85HT_D4QXw7Uq",
+      "mimeType": "text/plain",
+      "scope": "https://www.googleapis.com/auth/drive.readonly"
+    }
+  },
+  "githubServiceConfig": {
+    "base": "https://api.github.com",
+    "user": "alexkch",
+    "endpoint": {
+      "lang": "/repos/{user}/{repo}/languages",
+      "repos": "/users/{user}/repos"
+    }
+  },
+  "errorConfig": {
+    "defaultStatus": 500,
+    "defaultMsg": "Internal Server Error",
+    "_400Msg": "Bad request",
+    "_401Msg": "UNAUTHORIZED",
+    "_403Msg": "Forbidden",
+    "_404Msg": "Not found",
+    "_500Msg": "Internal Server Error",
+    "genericMsg": "Error"
+  }
+}
