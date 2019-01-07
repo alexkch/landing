@@ -1,39 +1,43 @@
 const { Project } = require('../db/models');
+const router = require('express').Router();
+const { validateMid } = require('../middleware');
 
-exports.getProjects = (req, res) => {
+router.get('/all', (req, res) => {
   Project.find()
     .select('-__v')
     .then(result => res.send(result))
     .catch(err => console.log(err));
-};
+});
 
-exports.getProject = (req, res, next) => {
+router.get('/:id', [validateMid], (req, res, next) => {
   Project.findById(req.params.id)
     .then(result => {
       if (result) return res.send(result);
       next({ status: 404 });
     })
     .catch(err => console.log(err));
-};
+});
 
-exports.createProject = (req, res) => {
+router.post('/', (req, res) => {
   new Project(req.body)
     .save()
     .then(result => res.send(result))
     .catch(err => console.log(err));
-};
+});
 
-exports.updateProject = (req, res) => {
+router.patch('/:id', [validateMid], (req, res) => {
   Project.update({ _id: req.params.id }, req.body).then(result => {
     if (result) return res.send(result);
   });
-};
+});
 
-exports.deleteProject = (req, res) => {
+router.delete('/:id', [validateMid], (req, res) => {
   Project.findByIdAndDelete(req.params.id)
     .then(result => {
       if (result) return res.send(result);
       next({ status: 404 });
     })
     .catch(err => console.log(err));
-};
+});
+
+module.exports = router;

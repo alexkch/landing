@@ -1,6 +1,7 @@
+const router = require('express').Router();
 const { githubService, githubQlService } = require('../services');
 
-exports.getContributors = (req, res) => {
+router.get('/contributor', (req, res) => {
   githubService
     .contributors(req.query)
     .then(result => {
@@ -8,9 +9,9 @@ exports.getContributors = (req, res) => {
       next({ status: 404 });
     })
     .catch(err => console.log(err));
-};
+});
 
-exports.getGitInfo = (req, res) => {
+router.get('/all', (req, res) => {
   githubQlService
     .req()
     .then(result => {
@@ -18,4 +19,6 @@ exports.getGitInfo = (req, res) => {
       next({ status: 404 });
     })
     .catch(err => console.log(err));
-};
+});
+
+module.exports = router;

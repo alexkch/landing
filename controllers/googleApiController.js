@@ -1,6 +1,7 @@
+const router = require('express').Router();
 const { googleDriveService } = require('../services');
 
-exports.getResumeFromDrive = (req, res) => {
+router.get('/', (req, res) => {
   googleDriveService
     .exportFile()
     .then(result => {
@@ -8,4 +9,6 @@ exports.getResumeFromDrive = (req, res) => {
       next({ status: 404 });
     })
     .catch(err => console.log(err));
-};
+});
+
+module.exports = router;
