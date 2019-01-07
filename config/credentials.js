@@ -6,5 +6,8 @@ module.exports = {
   googleService: {
     user: process.env.GUSER,
     pass: process.env.GPASS
+  },
+  githubService: {
+    token: process.env.GITTOKEN
   }
 };

@@ -21,8 +21,8 @@
     "base": "https://api.github.com",
     "user": "alexkch",
     "endpoint": {
-      "lang": "/repos/{user}/{repo}/languages",
-      "repos": "/users/{user}/repos"
+      "contributors": "/repos/{user}/{repo}/contributors",
+      "graphql": "/graphql"
     }
   },
   "errorConfig": {

@@ -1,4 +1,4 @@
-const { Project } = require('../models');
+const { Project } = require('../db/models');
 
 exports.getProjects = (req, res) => {
   Project.find()
