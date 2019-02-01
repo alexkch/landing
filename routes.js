@@ -3,7 +3,8 @@ const graphqlHttp = require('express-graphql');
 const {
   projectController,
   googleApiController,
-  githubController
+  githubController,
+  pipelineController
 } = require('./controllers');
 const { error } = require('./middleware');
 const { schema, resolver } = require('./graphql');
@@ -20,5 +21,6 @@ module.exports = app => {
   app.use('/gapi', googleApiController);
   app.use('/project', projectController);
   app.use('/github', githubController);
+  app.use('/pipeline', pipelineController);
   app.use(error);
 };
