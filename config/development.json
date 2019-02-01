@@ -9,6 +9,15 @@
       "useNewUrlParser": true
     }
   },
+  "parserServiceConfig": {
+    "breakpoints": {
+      "keys": ["education", "technical skills", "work experience", "projects"],
+      "allUppercase": true
+    },
+    "bulletPoint": "*",
+    "skillTypeSplitToken": ":",
+    "skillsSplitToken": ","
+  },
   "googleServiceConfig": {
     "drive": {
       "fileId": "1Z4CUHvFmL5RbB72WAPu2N0jE4FvdoYulUt93dL7Zik4",
