@@ -1,32 +1,24 @@
 const mongoose = require('mongoose');
 
 const experienceSchema = new mongoose.Schema({
-  company: {
+  title: {
     type: String,
     required: true,
-    trim: true
-  },
-  position: {
-    type: String,
-    required: true,
-    trim: true
-  },
-  duration: {
-    type: Number,
-    required: true
+    trim: true,
+    unique: true
   },
   description: [
     {
       type: String
     }
   ],
-  start_date: {
-    type: Date,
-    required: true
+  duration: {
+    type: String,
+    trim: true
   },
-  end_date: {
-    type: Date,
-    required: true
+  reference: {
+    type: String,
+    trim: true
   },
   collected_on: { type: Date, default: Date.now },
   created_on: { type: Date },

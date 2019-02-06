@@ -19,3 +19,7 @@ exports.genDateRegex = () => {
 };
 
 exports.genBulletPointsRegex = bulletToken => `[${bulletToken}]*\\s*`;
+
+exports.genReferenceRegex = () => {
+  return `[\\s\\S]*Reference:\\s*(.*)\\s*.*`;
+};

@@ -8,7 +8,6 @@ module.exports = resume => {
     'm'
   ).exec(resume);
 
-  console.log('IN match');
   let result = {};
   for (let i = 2; i < match.length; i += 2) {
     switch (match[i].toLowerCase()) {
@@ -27,6 +26,5 @@ module.exports = resume => {
         break;
     }
   }
-  console.log(result);
   return result;
 };

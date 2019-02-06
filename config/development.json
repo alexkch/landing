@@ -6,7 +6,9 @@
     "uri": "mongodb+srv://{user}:{pass}@cluster0-xwacc.mongodb.net/{dbName}?retryWrites=true",
     "dbName": "test",
     "options": {
-      "useNewUrlParser": true
+      "useNewUrlParser": true,
+      "useCreateIndex": true,
+      "useFindAndModify": false
     }
   },
   "parserServiceConfig": {

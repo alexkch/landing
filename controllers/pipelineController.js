@@ -1,6 +1,11 @@
 const router = require('express').Router();
 const { Project, Experience, Skill, Repo, Personal } = require('../db/models');
-const { googleDriveService, resumeParserService } = require('../services');
+const { breakpoints } = require('config').get('parserServiceConfig');
+const {
+  googleDriveService,
+  resumeParserService,
+  mongoDbService
+} = require('../services');
 
 router.get('/', (req, res) => {
   googleDriveService
@@ -11,7 +16,21 @@ router.get('/', (req, res) => {
     })
     .then(result => resumeParserService(result))
     .then(result => {
-      if (result) res.send(result);
+      if (result && !result.error) {
+        const {
+          'technical skills': skills,
+          'work experience': experiences,
+          projects
+        } = result;
+        return Promise.all([
+          mongoDbService.createOrUpdateRecord(Project, projects),
+          mongoDbService.createOrUpdateRecord(Experience, experiences),
+          mongoDbService.createOrUpdateRecord(Skill, skills)
+        ]);
+      }
+    })
+    .then(() => {
+      res.send('success').status(200);
     })
     .catch(err => console.log(err));
 });

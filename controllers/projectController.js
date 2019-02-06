@@ -1,7 +1,7 @@
 const { Project } = require('../db/models');
 const router = require('express').Router();
 const { validateMid } = require('../middleware');
-const { mongoCloudService } = require('../services');
+const { mongoDbService } = require('../services');
 
 router.get('/all', (req, res) => {
   Project.find()
@@ -11,7 +11,7 @@ router.get('/all', (req, res) => {
 });
 
 router.get('/graph-all', (req, res) => {
-  mongoCloudService
+  mongoDbService
     .getAll(Project)
     .then(result => {
       console.log(result);
@@ -30,8 +30,9 @@ router.get('/:id', [validateMid], (req, res, next) => {
 });
 
 router.post('/graph-post', (req, res) => {
-  mongoCloudService
-    .postToModel(Project, req.body)
+  console.log(req.body);
+  mongoDbService
+    .postBody(Project, req.body)
     .then(result => res.send(result))
     .catch(err => console.log(err));
 });
