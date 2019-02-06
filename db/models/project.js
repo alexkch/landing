@@ -4,6 +4,19 @@ const projectSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
+    trim: true,
+    unique: true
+  },
+  description: {
+    type: [
+      {
+        type: String
+      }
+    ],
+    required: true
+  },
+  reference: {
+    type: String,
     trim: true
   },
   collected_on: { type: Date, default: Date.now },

@@ -1,25 +1,20 @@
 const mongoose = require('mongoose');
 
 const skillSchema = new mongoose.Schema({
-  language: {
+  title: {
     type: String,
     required: true,
-    trim: true
+    trim: true,
+    unique: true
   },
-  experience: {
-    type: String,
+  skills: {
+    type: [
+      {
+        type: String
+      }
+    ],
     required: true,
     trim: true
-  },
-  duration: {
-    type: Number,
-    required: true
-  },
-  description: {
-    type: String
-  },
-  level: {
-    type: String
   },
   collected_on: { type: Date, default: Date.now },
   created_on: { type: Date },
