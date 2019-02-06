@@ -15,7 +15,8 @@ module.exports = app => {
     '/graphql',
     graphqlHttp({
       schema: schema,
-      rootValue: resolver
+      rootValue: resolver,
+      graphiql: true
     })
   );
   app.use('/gapi', googleApiController);
