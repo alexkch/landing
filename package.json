@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev:server": "nodemon -r dotenv/config app.js",
-    "local-dev:server": "LOCAL_DB=mongodb://localhost/prod_db nodemon -r dotenv/config app.js",
+    "dev:local": "LOCAL_DB=mongodb://localhost/prod_db nodemon -r dotenv/config app.js",
     "debug:server": "NODE_DEBUG=request nodemon -r dotenv/config app.js"
   },
   "author": "",
