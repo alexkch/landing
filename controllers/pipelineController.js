@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { Project, Experience, Skill, Repo, Personal } = require('../db/models');
 const { googleDriveService, resumeParserService } = require('../services');
 
 router.get('/', (req, res) => {

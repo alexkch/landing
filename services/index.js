@@ -3,5 +3,6 @@ module.exports = {
   googlePlacesService: require('./googlePlacesService'),
   githubService: require('./githubService'),
   githubQlService: require('./githubQlService'),
-  resumeParserService: require('./resumeParserService')
+  resumeParserService: require('./resumeParserService'),
+  mongoDbService: require('./mongoDbService')
 };
