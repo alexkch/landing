@@ -29,10 +29,22 @@ router.get('/', (req, res) => {
         ]);
       }
     })
-    .then(() => {
-      res.send('success').status(200);
+    .then(result => {
+      res.send(result).status(200);
     })
     .catch(err => console.log(err));
+});
+
+router.get('/test', (req, res) => {
+  googleDriveService
+    .pushNotification()
+    .then(result => res.send(result).status(200))
+    .catch(err => console.log(err));
+});
+
+router.post('/notification', (req, res) => {
+  console.log(req.headers);
+  res.send('success').status(200);
 });
 
 module.exports = router;

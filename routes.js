@@ -19,6 +19,7 @@ module.exports = app => {
       graphiql: true
     })
   );
+  app.use('/', express.static(__dirname + '/views'));
   app.use('/gapi', googleApiController);
   app.use('/project', projectController);
   app.use('/github', githubController);

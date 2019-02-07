@@ -29,3 +29,34 @@ exports.listFiles = options => {
     })
     .catch(err => console.log('no files found'));
 };
+
+// 3 minutes =  300000 ms
+//750000
+exports.pushNotification = options => {
+  return drive.changes
+    .getStartPageToken({
+      auth: __googleAuth({ scope: scope })
+    })
+    .then(({ data }) => {
+      console.log(new Date(Date.now() + 180000));
+      if (data && data.startPageToken) return data.startPageToken;
+    })
+    .then(token =>
+      drive.changes.watch({
+        pageToken: token,
+        auth: __googleAuth({ scope: scope }),
+        resource: {
+          id: 'id12345678x',
+          type: 'web_hook',
+          expiration: Date.now() + 300000,
+          payload: true,
+          token: 'TESTTOKEN9999999',
+          address: 'https://17459f70.ngrok.io/pipeline/webhook'
+        }
+      })
+    )
+    .then(({ data }) => {
+      console.log(data);
+      return data;
+    });
+};
