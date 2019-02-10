@@ -11,9 +11,7 @@ module.exports = options => {
   );
   jwtToken
     .authorize()
-    .then(token => {
-      console.log('Token Auth Successful');
-    })
+    .then(token => {})
     .catch(err => console.log(err));
   return jwtToken;
 };

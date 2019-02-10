@@ -3,5 +3,6 @@ module.exports = {
   Experience: require('./experience'),
   Personal: require('./personal'),
   Repo: require('./repo'),
-  Skill: require('./skill')
+  Skill: require('./skill'),
+  Webhook: require('./webhook')
 };
