@@ -4,7 +4,7 @@ const {
   projectController,
   googleApiController,
   githubController,
-  pipelineController
+  notifyController
 } = require('./controllers');
 const { error } = require('./middleware');
 const { schema, resolver } = require('./graphql');
@@ -23,6 +23,6 @@ module.exports = app => {
   app.use('/gapi', googleApiController);
   app.use('/project', projectController);
   app.use('/github', githubController);
-  app.use('/pipeline', pipelineController);
+  app.use('/notify', notifyController);
   app.use(error);
 };

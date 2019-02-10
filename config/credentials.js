@@ -5,7 +5,8 @@ module.exports = {
   },
   googleService: {
     user: process.env.GUSER,
-    pass: process.env.GPASS
+    pass: process.env.GPASS,
+    driveNotifySecret: process.env.GNOTIFYSECRET
   },
   githubService: {
     token: process.env.GITTOKEN

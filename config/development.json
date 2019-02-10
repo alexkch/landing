@@ -1,6 +1,7 @@
 {
   "appConfig": {
-    "port": 8080
+    "port": 8080,
+    "baseUri": "https://b58625bf.ngrok.io"
   },
   "dbConfig": {
     "uri": "mongodb+srv://{user}:{pass}@cluster0-xwacc.mongodb.net/{dbName}?retryWrites=true",
@@ -20,13 +21,15 @@
     "skillTypeSplitToken": ":",
     "skillsSplitToken": ","
   },
-  "googleServiceConfig": {
-    "drive": {
+  "googleDriveServiceConfig": {
+    "resume_v1": {
       "fileId": "1Z4CUHvFmL5RbB72WAPu2N0jE4FvdoYulUt93dL7Zik4",
       "folderId": "1TYX-u91sHaYfUOpdimZ85HT_D4QXw7Uq",
-      "mimeType": "text/plain",
-      "scope": "https://www.googleapis.com/auth/drive.readonly"
-    }
+      "resourceId": "oi-dRmbOsIBlGuRu-8ojVDmmpJM"
+    },
+    "scope": "https://www.googleapis.com/auth/drive.readonly",
+    "webhookExpiryTime": 180000,
+    "allowedTimeBeforeExpiry": 40000
   },
   "githubServiceConfig": {
     "base": "https://api.github.com",

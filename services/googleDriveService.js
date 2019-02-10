@@ -1,8 +1,12 @@
 const { google } = require('googleapis');
+const uuidv1 = require('uuid/v1');
 const __googleAuth = require('./__googleAuthService');
-const { fileId, folderId, mimeType, scope } = require('config').get(
-  'googleServiceConfig.drive'
+const { googleService } = require('../config/credentials');
+const { resume_v1, webhookExpiryTime, scope } = require('config').get(
+  'googleDriveServiceConfig'
 );
+const { fileId, folderId } = resume_v1;
+const { baseUri } = require('config').get('appConfig');
 const drive = google.drive('v3');
 
 exports.exportFile = options =>
@@ -10,7 +14,7 @@ exports.exportFile = options =>
     .export({
       auth: __googleAuth({ scope: scope }),
       fileId: fileId,
-      mimeType: mimeType
+      mimeType: 'text/plain'
     })
     .then(({ data }) => data);
 
@@ -30,15 +34,13 @@ exports.listFiles = options => {
     .catch(err => console.log('no files found'));
 };
 
-// 3 minutes =  300000 ms
-//750000
-exports.pushNotification = options => {
+exports.requestWebhook = options => {
+  console.log('\nGSERVICE:::REQUEST WEBHOOK');
   return drive.changes
     .getStartPageToken({
       auth: __googleAuth({ scope: scope })
     })
     .then(({ data }) => {
-      console.log(new Date(Date.now() + 180000));
       if (data && data.startPageToken) return data.startPageToken;
     })
     .then(token =>
@@ -46,17 +48,14 @@ exports.pushNotification = options => {
         pageToken: token,
         auth: __googleAuth({ scope: scope }),
         resource: {
-          id: 'id12345678x',
+          id: uuidv1(),
           type: 'web_hook',
-          expiration: Date.now() + 300000,
+          expiration: Date.now() + webhookExpiryTime,
           payload: true,
-          token: 'TESTTOKEN9999999',
-          address: 'https://17459f70.ngrok.io/pipeline/webhook'
+          token: googleService.driveNotifySecret,
+          address: `${baseUri}/notify`
         }
       })
     )
-    .then(({ data }) => {
-      console.log(data);
-      return data;
-    });
+    .then(({ data }) => data);
 };
