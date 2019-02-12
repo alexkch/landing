@@ -1,0 +1,9 @@
+{
+    // Controls if the editor should automatically format the line after typing
+
+
+    "editor.formatOnSave": true,
+    "prettier.singleQuote": true,
+    "git.ignoreLimitWarning": true
+
+}
