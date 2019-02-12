@@ -1,5 +1,5 @@
 const app = require('express')();
-const { test, googleDriveWebhookCronjob } = require('./cronjobs');
+const { googleDriveWebhookCronjob } = require('./cronjobs');
 const { port } = require('config').get('appConfig');
 
 require('./db/setup')(client => {
