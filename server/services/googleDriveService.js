@@ -53,7 +53,7 @@ exports.requestWebhook = options => {
           expiration: Date.now() + webhookExpiryTime,
           payload: true,
           token: googleService.driveNotifySecret,
-          address: `${baseUri}/notify`
+          address: `${baseUri}/notify/gdrive`
         }
       })
     )
