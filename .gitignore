@@ -1,3 +1,6 @@
+# ignore dotenv
+.env
+
 #Ignore .vscode files
 ./vscode
 .vscode/
@@ -10,9 +13,8 @@ output/coverage/jest
 output/coverage/junit/junit.xml
 output/coverage/integration/integrationtest.xml
 
-# ignore dotenv
-.env
-
 # ignore build files
 dist-server
 dist-ui
+server/dist-server
+ui/dist-ui
