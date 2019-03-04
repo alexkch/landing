@@ -9,9 +9,6 @@ module.exports = options => {
     [options.scope],
     null
   );
-  jwtToken
-    .authorize()
-    .then(token => {})
-    .catch(err => console.log(err));
+  jwtToken.authorize().then(token => {});
   return jwtToken;
 };

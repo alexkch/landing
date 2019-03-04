@@ -1,5 +1,6 @@
 const { google } = require('googleapis');
 const uuidv1 = require('uuid/v1');
+const { loggerContainer } = require('../utils');
 const __googleAuth = require('./__googleAuthService');
 const { googleService } = require('../config/credentials');
 const { resume_v1, webhookExpiryTime, scope } = require('config').get(
@@ -30,12 +31,12 @@ exports.listFiles = options => {
       if (data && data.files)
         data.files.map(file => console.log(`${file.name} ${file.id}`));
       return data;
-    })
-    .catch(err => console.log('no files found'));
+    });
 };
 
 exports.requestWebhook = options => {
   console.log('\nGSERVICE:::REQUEST WEBHOOK');
+  loggerContainer.get('server').info('GSERVICE requesting webhook');
   return drive.changes
     .getStartPageToken({
       auth: __googleAuth({ scope: scope })

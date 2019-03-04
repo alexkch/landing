@@ -38,15 +38,5 @@
       "contributors": "/repos/{user}/{repo}/contributors",
       "graphql": "/graphql"
     }
-  },
-  "errorConfig": {
-    "defaultStatus": 500,
-    "defaultMsg": "Internal Server Error",
-    "_400Msg": "Bad request",
-    "_401Msg": "UNAUTHORIZED",
-    "_403Msg": "Forbidden",
-    "_404Msg": "Not found",
-    "_500Msg": "Internal Server Error",
-    "genericMsg": "Error"
   }
 }

@@ -1,7 +1,8 @@
+const { loggerContainer } = require('../utils');
 const { Webhook } = require('../db/models');
 
 module.exports = (service, resourceId, allowedTimeBeforeExpiry) => () => {
-  console.log('\nSTART WEBHOOK LOOP');
+  loggerContainer.get('server').info('Start Webhook Loop');
   return Webhook.find({
     resourceId: resourceId
   })

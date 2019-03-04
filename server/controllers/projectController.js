@@ -2,6 +2,14 @@ const { Project } = require('../db/models');
 const router = require('express').Router();
 const { validateMid } = require('../middleware');
 
+router.get('/test', (req, res) => {
+  res.send('success').status(200);
+});
+
+router.post('/test2', (req, res) => {
+  res.send('success').status(200);
+});
+
 router.get('/all', (req, res) => {
   Project.find()
     .select('-__v')

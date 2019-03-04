@@ -1,4 +1,5 @@
 const schedule = require('node-schedule');
+const { loggerContainer } = require('../utils');
 const { googleDriveService } = require('../services');
 const checkAndRequestWebhook = require('./checkAndRequestWebhook');
 const { resume_v1, allowedTimeBeforeExpiry } = require('config').get(
@@ -23,8 +24,8 @@ exports.googleDriveWebhookCronjob = () => {
         )
       );
     })
-    .then(() => console.log('\nWebhook Loop Success'))
-    .catch(err => console.log(err));
+    .then(() => loggerContainer.get('server').info('Webhook Loop Success'))
+    .catch(err => loggerContainer.get('server').error(err));
 };
 
 const moduletest = (service, resourceId, allowedTimeBeforeExpiry) => () => {

@@ -1,6 +1,9 @@
 # ignore dotenv
 .env
 
+# ignore logs
+logs
+
 #Ignore .vscode files
 ./vscode
 .vscode/

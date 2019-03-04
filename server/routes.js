@@ -1,24 +1,19 @@
 const express = require('express');
-const graphqlHttp = require('express-graphql');
+const { error, log } = require('./middleware');
+const graphql = require('./graphql');
 const {
   projectController,
   googleApiController,
   githubController,
   notifyController
 } = require('./controllers');
-const { error } = require('./middleware');
-const { schema, resolver } = require('./graphql');
 
 module.exports = app => {
+  app.use(log.apiReqLogger);
+  app.use(log.notifyReqLogger);
   app.use(express.json());
-  app.use(
-    '/graphql',
-    graphqlHttp({
-      schema: schema,
-      rootValue: resolver,
-      graphiql: true
-    })
-  );
+  app.use('/graphql', graphql);
+
   app.use('/', express.static(__dirname + '/views'));
   app.use('/gapi', googleApiController);
   app.use('/project', projectController);

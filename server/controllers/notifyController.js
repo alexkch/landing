@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const HttpStatus = require('http-status-codes');
 const {
   Project,
   Experience,
@@ -10,9 +11,9 @@ const {
 const { breakpoints } = require('config').get('parserServiceConfig');
 const { googleService } = require('../config/credentials');
 const { googleDriveService, resumeParserService } = require('../services');
-const { updateMultipleRecords } = require('../utils/updateMultiRecords');
+const updateMultipleRecords = require('../utils/updateMultiRecords');
 
-router.post('/gdrive', (req, res) => {
+router.post('/gdrive', (req, res, next) => {
   const {
     'x-goog-channel-id': channelId,
     'x-goog-channel-expiration': expiration,
@@ -22,8 +23,10 @@ router.post('/gdrive', (req, res) => {
   } = req.headers;
 
   if (secret !== googleService.driveNotifySecret) {
-    console.log('ERROR');
-    return;
+    next({
+      status: HttpStatus.BAD_REQUEST,
+      log: '[POST] /notify/gdrive => INCORRECT SECRET'
+    });
   }
 
   if (state !== 'change') res.send('success').status(200);
@@ -32,7 +35,10 @@ router.post('/gdrive', (req, res) => {
     .exportFile()
     .then(result => {
       if (result) return result;
-      next({ status: 404 });
+      next({
+        status: HttpStatus.NOT_FOUND,
+        log: '[POST] /notify/gdrive => Google drive service file not found'
+      });
     })
     .then(result => resumeParserService(result))
     .then(result => {
@@ -48,11 +54,22 @@ router.post('/gdrive', (req, res) => {
           updateMultipleRecords(Skill, skills)
         ]);
       }
+      next({
+        status: HttpStatus.BAD_REQUEST,
+        log: `[POST] /notify/gdrive => Parsed resume returns with error: ${
+          result.error
+        }`
+      });
     })
     .then(result => {
       res.send(result).status(200);
     })
-    .catch(err => console.log(err));
+    .catch(err =>
+      next({
+        status: HttpStatus.INTERNAL_SERVER_ERROR,
+        log: `[POST] /notify/gdrive => ${err}`
+      })
+    );
 });
 
 module.exports = router;
