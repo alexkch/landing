@@ -27,18 +27,3 @@ exports.googleDriveWebhookCronjob = () => {
     .then(() => loggerContainer.get('server').info('Webhook Loop Success'))
     .catch(err => loggerContainer.get('server').error(err));
 };
-
-const moduletest = (service, resourceId, allowedTimeBeforeExpiry) => () => {
-  return Webhook.find({
-    resourceId: resourceId
-  }).then(result => {
-    if (
-      !result ||
-      result.filter(
-        e => e.expiry && e.expiry - Date.now() > allowedTimeBeforeExpiry
-      ).length > 0
-    )
-      return { continue: true };
-    service();
-  });
-};

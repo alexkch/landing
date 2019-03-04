@@ -9,8 +9,8 @@ exports.notifyReqLogger = morgan(
       if (
         req &&
         req.headers &&
-        req.headers['X-Goog-Resource-State'] &&
-        req.headers['X-Goog-Channel-ID']
+        req.headers['X-Goog-Resource-State'.toLowerCase()] &&
+        req.headers['X-Goog-Channel-ID'.toLowerCase()]
       )
         skip = false;
       return skip;
@@ -31,8 +31,8 @@ exports.apiReqLogger = morgan(
       if (
         req &&
         req.headers &&
-        req.headers['X-Goog-Resource-State'] &&
-        req.headers['X-Goog-Channel-ID']
+        req.headers['X-Goog-Resource-State'.toLowerCase()] &&
+        req.headers['X-Goog-Channel-ID'.toLowerCase()]
       )
         skip = true;
       return skip;

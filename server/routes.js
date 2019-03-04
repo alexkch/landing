@@ -9,8 +9,8 @@ const {
 } = require('./controllers');
 
 module.exports = app => {
-  app.use(log.apiReqLogger);
   app.use(log.notifyReqLogger);
+  app.use(log.apiReqLogger);
   app.use(express.json());
   app.use('/graphql', graphql);
 

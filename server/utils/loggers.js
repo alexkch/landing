@@ -6,15 +6,14 @@ const container = new Container();
 container.add('http', {
   level: 'info',
   format: combine(
-    label({ label: 'Http Logger message' }),
     timestamp(),
     printf(({ level, message, label, timestamp }) => {
-      return `${timestamp} [${level}]: (${label}) ==> ${message}`;
+      return `${timestamp} [${level}]: ${message}`;
     })
   ),
   transports: [
     new transports.File({
-      filename: './logs/network/notify.log',
+      filename: './logs/network/info.log',
       maxsize: 5242880,
       maxFiles: 5,
       colorize: false
@@ -42,10 +41,9 @@ container.add('http', {
 container.add('server', {
   level: 'info',
   format: combine(
-    label({ label: 'Server Logger message' }),
     timestamp(),
-    printf(({ level, message, label, timestamp }) => {
-      return `${timestamp} [${level}]: (${label}) ==> ${message}`;
+    printf(({ level, message, timestamp }) => {
+      return `${timestamp} [${level}]: ${message}`;
     })
   ),
   transports: [
