@@ -12,9 +12,8 @@ module.exports = app => {
   app.use(log.notifyReqLogger);
   app.use(log.apiReqLogger);
   app.use(express.json());
-  app.use('/graphql', graphql);
-
   app.use('/', express.static(__dirname + '/views'));
+  app.use('/graphql', graphql);
   app.use('/gapi', googleApiController);
   app.use('/project', projectController);
   app.use('/github', githubController);

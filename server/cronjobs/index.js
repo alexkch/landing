@@ -6,8 +6,6 @@ const { resume_v1, allowedTimeBeforeExpiry } = require('config').get(
   'googleDriveServiceConfig'
 );
 
-const { Webhook } = require('../db/models'); // to remove
-
 exports.googleDriveWebhookCronjob = () => {
   checkAndRequestWebhook(
     googleDriveService.requestWebhook,

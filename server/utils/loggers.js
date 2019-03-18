@@ -13,14 +13,14 @@ container.add('http', {
   ),
   transports: [
     new transports.File({
-      filename: './logs/network/info.log',
+      filename: '../logs/network/info.log',
       maxsize: 5242880,
       maxFiles: 5,
       colorize: false
     }),
     new transports.File({
       level: 'error',
-      filename: './logs/network/error.log',
+      filename: '../logs/network/error.log',
       maxsize: 5242880,
       maxFiles: 5,
       colorize: false
@@ -29,7 +29,7 @@ container.add('http', {
   exceptionHandlers: [
     new transports.File({
       level: 'error',
-      filename: './logs/network/error.log',
+      filename: '../logs/network/error.log',
       maxsize: 5242880,
       maxFiles: 5,
       colorize: false
@@ -48,14 +48,14 @@ container.add('server', {
   ),
   transports: [
     new transports.File({
-      filename: './logs/server/info.log',
+      filename: '../logs/server/info.log',
       maxsize: 5242880,
       maxFiles: 5,
       colorize: false
     }),
     new transports.File({
       level: 'error',
-      filename: './logs/server/error.log',
+      filename: '../logs/server/error.log',
       maxsize: 5242880,
       maxFiles: 5,
       colorize: false
@@ -64,7 +64,7 @@ container.add('server', {
   exceptionHandlers: [
     new transports.File({
       level: 'error',
-      filename: './logs/server/error.log',
+      filename: '../logs/server/error.log',
       maxsize: 5242880,
       maxFiles: 5,
       colorize: false
