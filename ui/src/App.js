@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import profile from './profile';
-import './App.css';
+import Todo from './components/Todo';
 
 class App extends Component {
   render() {
-    return (
-      <div className="App">
-        <profile />
-      </div>
-    );
+    return '<Todo />;';
   }
 }
 
